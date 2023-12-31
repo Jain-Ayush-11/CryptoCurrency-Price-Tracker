@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from core.models import *
 from core.serializers import *
 from django.contrib.auth import get_user_model
@@ -19,3 +20,7 @@ class UserAlertViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         request.data['user'] = request.user.id
         return super().create(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        super().destroy(request, *args, **kwargs)
+        return Response({'message': 'alert successfully destoryed'})

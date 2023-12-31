@@ -12,6 +12,7 @@ router.register(r'users', UserViewSet, basename='users')
 app_name = 'core'
 urlpatterns = [
     path('alerts/create/', UserAlertViewSet.as_view({'post': 'create'}), name='alert-create'),
+    path('alerts/delete/<pk>/', UserAlertViewSet.as_view({'delete': 'destroy'}), name='alert-create'),
     path('users/create/', UserViewSet.as_view({'post': 'create'}), name='user-create'),
     path('', include(router.urls)),
 ]
