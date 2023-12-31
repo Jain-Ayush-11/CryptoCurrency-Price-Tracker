@@ -16,7 +16,7 @@ class BaseModel(SafeDeleteModel):
     def is_deleted(self, *args, **kwargs):
         return self.deleted is not None
 
-class UserAlerts(BaseModel):
+class UserAlert(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='alert')
     price = models.PositiveIntegerField()
     triggered = models.BooleanField(default=False)
