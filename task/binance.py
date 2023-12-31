@@ -1,13 +1,17 @@
 import websocket
 import json
+from core.models import UserAlert
 
 class BinanceWebsocketUtils:
 
     @classmethod
     def on_message(cls, ws, message):
         data = json.loads(message)
-        # if 'p' in data:
-        #     print(f"price is: {data['p']}")
+        if 'p' in data:
+            print(data['p'])
+            qs = UserAlert.objects.filter(price=data['p'], triggered=False)
+            qs.update(triggered=True)
+            print(qs)
 
     @classmethod
     def on_error(cls, ws, error):

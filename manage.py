@@ -8,16 +8,9 @@ def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task.settings')
 
-    def run_binance_script():
-        from task.binance import BinanceWebsocketUtils
-        BinanceWebsocketUtils.start_websocket_listener()
-
-    script_thread = threading.Thread(target=run_binance_script)
-    script_thread.daemon = True
-    script_thread.start()
-
     try:
         from django.core.management import execute_from_command_line
+
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "

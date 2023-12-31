@@ -18,5 +18,5 @@ class BaseModel(SafeDeleteModel):
 
 class UserAlert(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='alert')
-    price = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=25, decimal_places=8)
     triggered = models.BooleanField(default=False)
