@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from core.models import *
 from core.serializers import *
@@ -16,3 +15,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class UserAlertViewSet(viewsets.ModelViewSet):
     queryset = UserAlert.objects.all()
     serializer_class = UserAlertSerializer
+
+    def create(self, request, *args, **kwargs):
+        request.data['user'] = request.user.id
+        return super().create(request, *args, **kwargs)
