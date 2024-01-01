@@ -49,7 +49,7 @@ This conculdes the basic project setup for running using docker.
 ## API Endpoints
 ### Postman collection
 For the project the following postman collection can be used for easy API  setup.
-- It can be accessed using this [link](https://api.postman.com/collections/18099512-d616d445-f405-4adc-a450-c1497b24dcc4?access_key=PMAT-01HK3CF7SVG4SPHKEXG547S8XH).
+- It can be accessed using this [Postman Collection Link](https://api.postman.com/collections/18099512-d616d445-f405-4adc-a450-c1497b24dcc4?access_key=PMAT-01HK3CF7SVG4SPHKEXG547S8XH).
 - The Collection contains example responses for all the possible cases of all APIs. Please refer to those for any clarification on sample response.  <br><br>
 ![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/579365c9-794c-4388-a5b5-9e38f39473d7)
 ### Access Token (JWT)
@@ -141,7 +141,7 @@ To List out all the alerts of a User, we can use the `Get Alerts` request of the
 - The `celery` container is the once which runs the celery worker. <br>
 <!--alignment fix comment-->
 ![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/41dac6bf-f6f5-4e88-b043-357475a5b463)
-### Caching List Alerts
+### Caching Alerts List
 - I've used `Redis` for creating a cache layer.
 - The result for `Get Alerts` and `Get Alerts with Filter` are stored seperately based on two different keys.  <br>
 ### Development Practices
