@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'safedelete',
     'rest_framework_simplejwt',
     'core',
     'django_celery_results',

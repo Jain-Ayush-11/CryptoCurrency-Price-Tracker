@@ -18,8 +18,21 @@ class UserSerializer(serializers.ModelSerializer):
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         }
-
-class UserAlertSerializer(serializers.ModelSerializer):
+class UserAlertCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAlert
         fields = '__all__'
+
+class UserAlertSerializer(serializers.ModelSerializer):
+    status = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = UserAlert
+        fields =['price', 'status']
+
+    def get_status(self, obj):
+        if obj.is_deleted():
+            return "Deleted"
+        elif obj.triggered:
+            return "Triggered"
+        return "Created"
