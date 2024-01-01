@@ -78,10 +78,21 @@ WSGI_APPLICATION = 'task.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',      # Name of the database (e.g., POSTGRES_DB)
+        'USER': 'myuser',          # Username (e.g., POSTGRES_USER)
+        'PASSWORD': 'mypassword',  # Password (e.g., POSTGRES_PASSWORD)
+        'HOST': 'postgres',        # Service name from docker-compose (matches the service name)
+        'PORT': '5432',
     }
 }
 
