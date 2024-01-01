@@ -1,4 +1,4 @@
-# Brine Task
+# Brine/tanX Task
 Created a price alert application that triggers an email when the user’s target price is achieved for BTC/USDT.
 ## Project Setup
 The project is dockerized so just need to build and run the docker container.
