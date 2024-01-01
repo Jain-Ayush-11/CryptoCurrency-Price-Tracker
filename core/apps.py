@@ -8,7 +8,7 @@ class CoreConfig(AppConfig):
 
     def ready(self):
         def run_binance_script():
-            from task.binance import BinanceWebsocketUtils
+            from core.utils import BinanceWebsocketUtils
             BinanceWebsocketUtils.start_websocket_listener()
 
         script_thread = threading.Thread(target=run_binance_script)

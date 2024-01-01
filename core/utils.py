@@ -8,10 +8,10 @@ class BinanceWebsocketUtils:
     def on_message(cls, ws, message):
         data = json.loads(message)
         if 'p' in data:
-            print(data['p'])
+            # print(data['p'])
             qs = UserAlert.objects.filter(price=data['p'], triggered=False)
             qs.update(triggered=True)
-            print(qs)
+            # print(qs)
 
     @classmethod
     def on_error(cls, ws, error):
