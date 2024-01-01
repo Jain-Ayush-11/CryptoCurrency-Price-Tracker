@@ -192,7 +192,7 @@ SIMPLE_JWT = {
 # CELERY SETTINGS
 
 CELERY_TIMEZONE = 'Asia/Kolkata'
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
@@ -202,7 +202,7 @@ CELERY_TASK_TIME_LIMIT = 5 * 60
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": 'redis://127.0.0.1:6379',
+        "LOCATION": CELERY_BROKER_URL,
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             "IGNORE_EXCEPTIONS": True,
