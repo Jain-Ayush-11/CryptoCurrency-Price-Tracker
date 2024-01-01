@@ -42,9 +42,8 @@ Provide the required details and the user will be created. <br><br>
 The email needs to be provided and saved once the User object is created.
 - The email is necessary for sending alerts for the user.
 - The other details are optional, won't be used anywhere in the project.
+- Don't forget to save the object after typing the email. <br><br>
+![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/5f30ff31-2262-4ca1-bd77-5c4171e4030e)
 <br>
-![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/f7f81bbc-65bb-44de-a50e-97e732eb57cc)
-<br>
-- Don't forget to save the object after typing the email.
-This conculdes the basic project setup for running using docker.
+This conculdes the basic project setup for running using docker. <br>
 ## API Endpoints
