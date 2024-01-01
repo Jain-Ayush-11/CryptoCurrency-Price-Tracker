@@ -30,6 +30,17 @@ class UserAlertViewSet(viewsets.ModelViewSet):
             )
         ).order_by('custom_order', '-created_at')
 
+        if self.action in ['list']:
+            query_params = self.request.query_params
+            status=query_params.get('status', None)
+            if status:
+                if status == 'triggered':
+                    queryset=queryset.filter(triggered=True, deleted__isnull=True)
+                elif status == 'created':
+                    queryset=queryset.filter(triggered=False, deleted__isnull=True)
+                elif status == 'deleted':
+                    queryset=queryset.filter(deleted__isnull=False)
+
         return queryset
 
     def get_serializer_class(self):
