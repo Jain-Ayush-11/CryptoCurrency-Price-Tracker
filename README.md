@@ -124,3 +124,21 @@ To List out all the alerts of a User, we can use the `Get Alerts` request of the
 ```
 ![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/e13f1d4d-1c53-47f0-a15f-66373d0b67c9)
 - The results are Cached for a duration of `60 seconds`.
+## Project Soltuion
+### Price Fetch
+- For Live Price of BTC/USDT, I've used the <b>Binance WebSocket</b>. I've used the <b>[trade websocket stream](https://binance-docs.github.io/apidocs/spot/en/#trade-streams)<b> among all the websocket streams.
+- I created a utility class in `core/utils.py` file of the project. I've used [websockets](https://pypi.org/project/websockets/) library for connection.
+- The websocket is automatically started with app initialization on `runserver`.
+- The data is served in the `on_messaged` method.
+- I'm extracting the current price at which the trade happened and checking if any `UserAlert` object exists.
+- If any object exists, I'm sending the user's email list and price to a task which runs asynchronously using `celery` and `redis` as broker.
+### Email Trigger
+- Once the task recieves any email list, it sends a mail to those users from my personal email.
+- It prints the same mail content/statement on the console as well.
+- The print output can be found in the logs of the `celery` container of the docker container.
+- The `celery` container is the once which runs the celery worker. <br>
+<!--alignment fix comment-->
+![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/41dac6bf-f6f5-4e88-b043-357475a5b463)
+### Caching List Alerts
+- I've used `Redis` for creating a cache layer.
+- The result for `Get Alerts` and `Get Alerts with Filter` are stored seperately based on two different keys.  <br>
