@@ -133,7 +133,9 @@ To List out all the alerts of a User, we can use the `Get Alerts` request of the
 - I'm extracting the current price at which the trade happened and checking if any `UserAlert` object exists.
 - If any object exists, I'm sending the user's email list and price to a task which runs asynchronously using `celery` and `redis` as broker.
 ### Email Trigger
-- Once the task recieves any email list, it sends a mail to those users from my personal email.
+- Once the task recieves any email list, it sends a mail to those users from my personal email. <br>
+<!--alignment fix comment-->
+![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/620ed7ac-d64d-423e-be4f-6cc9a9a52614)
 - It prints the same mail content/statement on the console as well.
 - The print output can be found in the logs of the `celery` container of the docker container.
 - The `celery` container is the once which runs the celery worker. <br>
