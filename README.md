@@ -128,7 +128,7 @@ To List out all the alerts of a User, we can use the `Get Alerts` request of the
 ### Price Fetch
 - For Live Price of BTC/USDT, I've used the <b>Binance WebSocket</b>. I've used the <b>[trade websocket stream](https://binance-docs.github.io/apidocs/spot/en/#trade-streams)<b> among all the websocket streams.
 - I created a utility class in `core/utils.py` file of the project. I've used [websockets](https://pypi.org/project/websockets/) library for connection.
-- The websocket is automatically started with app initialization on `runserver`.
+- The websocket is automatically started with app initialization on `runserver` in a seperate thread.
 - The data is served in the `on_messaged` method.
 - I'm extracting the current price at which the trade happened and checking if any `UserAlert` object exists.
 - If any object exists, I'm sending the user's email list and price to a task which runs asynchronously using `celery` and `redis` as broker.
@@ -142,3 +142,19 @@ To List out all the alerts of a User, we can use the `Get Alerts` request of the
 ### Caching List Alerts
 - I've used `Redis` for creating a cache layer.
 - The result for `Get Alerts` and `Get Alerts with Filter` are stored seperately based on two different keys.  <br>
+### Development Practices
+- Used sqlite3 for initial development ad shifted to PostgresQL during end stages and dockerize.
+- I've used `safedelete` models and admin for soft delete functionality. ([See Package](https://pypi.org/project/django-safedelete/))
+- The status of any alert is assumed to be one of the following
+    - `created`: The alert hasn't yet been triggered.
+    - `triggered`: The price set by user was reached and alert has been triggered.
+    - `deleted`: The alert was deleted. (doesn't matter if it was triggered or not)
+- Used `JWT` for authentication.
+- Used `PageNumberPagination` from the `rest_framework` pagination class.
+- Used `redis` as broker and result-backend for `celery` to implement background/async processing.
+- Used `redis` as backend/location for `caching`.
+## Resources Used:
+- [Binance trade stream documentation](binance-docs.github.io/apidocs/spot/en/#trade-streams)
+- [Celery Documentation for Django](https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#using-celery-with-django)
+- [Django Rest Framework Documentation for Pagination](https://www.django-rest-framework.org/api-guide/pagination/)
+- [Stackoverflow](https://stackoverflow.com/)
