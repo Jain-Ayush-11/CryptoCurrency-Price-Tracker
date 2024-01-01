@@ -2,6 +2,7 @@ import websocket
 import json
 from core.models import UserAlert
 from core.tasks import send_price_alerts
+from core.constants import *
 
 class BinanceWebsocketUtils:
 
@@ -36,3 +37,13 @@ class BinanceWebsocketUtils:
                                     on_close=cls.on_close)
         ws.on_open = cls.on_open
         ws.run_forever()
+
+class CacheUtils:
+
+    @classmethod
+    def get_user_alerts_cache_key(cls, request):
+        if request.query_params.get('status', None):
+            cache_key = USER_ALERT_STATUS_CACHE_KEY.format(user_id=request.user.id, status=request.query_params.get('status'))
+        else:
+            cache_key = USER_ALERT_CACHE_KEY.format(user_id=request.user.id)
+        return cache_key

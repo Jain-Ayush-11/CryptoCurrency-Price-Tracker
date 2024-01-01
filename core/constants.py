@@ -1,0 +1,3 @@
+USER_ALERT_CACHE_KEY = '{user_id}'
+USER_ALERT_STATUS_CACHE_KEY = '{user_id}_{status}'
+USER_ALERT_CACHE_TIMEOUT = 60*1
