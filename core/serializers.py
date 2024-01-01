@@ -28,7 +28,7 @@ class UserAlertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAlert
-        fields =['price', 'status']
+        fields =['id', 'price', 'status']
 
     def get_status(self, obj):
         if obj.is_deleted():
