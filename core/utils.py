@@ -1,6 +1,7 @@
 import websocket
 import json
 from core.models import UserAlert
+from core.tasks import send_price_alerts
 
 class BinanceWebsocketUtils:
 
@@ -8,10 +9,11 @@ class BinanceWebsocketUtils:
     def on_message(cls, ws, message):
         data = json.loads(message)
         if 'p' in data:
-            # print(data['p'])
             qs = UserAlert.objects.filter(price=data['p'], triggered=False)
-            qs.update(triggered=True)
-            # print(qs)
+            if qs.exists():
+                emails = qs.values_list('user__email', flat=True)
+                send_price_alerts.delay(list(emails), data['p'])
+                qs.update(triggered=True)
 
     @classmethod
     def on_error(cls, ws, error):
