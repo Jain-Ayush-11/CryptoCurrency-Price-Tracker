@@ -126,7 +126,7 @@ To List out all the alerts of a User, we can use the `Get Alerts` request of the
 - The results are Cached for a duration of `60 seconds`.
 ## Project Soltuion
 ### Price Fetch
-- For Live Price of BTC/USDT, I've used the <b>Binance WebSocket</b>. I've used the <b>[trade websocket stream](https://binance-docs.github.io/apidocs/spot/en/#trade-streams)<b> among all the websocket streams.
+- For Live Price of BTC/USDT, I've used the <b>Binance WebSocket</b>. I've used the <b>[trade websocket stream](https://binance-docs.github.io/apidocs/spot/en/#trade-streams)</b> among all the websocket streams.
 - I created a utility class in `core/utils.py` file of the project. I've used [websockets](https://pypi.org/project/websockets/) library for connection.
 - The websocket is automatically started with app initialization on `runserver` in a seperate thread.
 - The data is served in the `on_messaged` method.
