@@ -8,7 +8,6 @@ $ docker-compose up --build
 ```
 This will build the container and once completed, the container will be running and visible in the container section of the Docker Desktop.
 Even if the terminal is closed, the container can be started/stopped from the GUI.<br><br>
-![image](https://github.com/Jain-Ayush-11/Brine-Task/assets/76158814/2e3a3955-41f8-4f01-ae17-2af69b451090)
 <br>This container will run all the resources (redis, postgres, etc) for the project.
 <br>We can now access the server at [http://localhost:8000/](http://localhost:8000/).
 ### Database Setup
